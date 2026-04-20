@@ -8,14 +8,14 @@
    ========================================== */
 
 // Animation speed (in milliseconds)
-var animationSpeed = 350;
+var animationSpeed = 500;
 
 // Should the slider loop from last → first?
 var infinite = true;
 
 // Autoplay settings
-var autoplay = false; // change to true to automatically advance slides
-var autoplayDelay = 2500; // pause between auto playing slides
+var autoplay = true; // change to true to automatically advance slides
+var autoplayDelay = 4500; // pause between auto playing slides
 
 
 /* ==========================================
@@ -48,7 +48,7 @@ function updateSlider() {
   // Move the track left based on currentIndex
   var offset = currentIndex * -100;
   // Use translateX() to move the track left by offset percent
-  ;
+  track.style.transform = "translateX(" + offset + "%)";
 
   // Update active dot
   dots.forEach(function(dot) {
@@ -66,7 +66,7 @@ function updateSlider() {
 nextButton.addEventListener("click", function() {
 
   if (currentIndex < totalSlides - 1) {
-    ;
+    currentIndex++;
   } else if (infinite) {
     currentIndex = 0;
   }
@@ -77,7 +77,7 @@ nextButton.addEventListener("click", function() {
 prevButton.addEventListener("click", function() {
 
   if (currentIndex > 0) {
-    ;
+    currentIndex--;
   } else if (infinite) {
     currentIndex = totalSlides - 1;
   }
@@ -94,7 +94,7 @@ dots.forEach(function(dot) {
   dot.addEventListener("click", function() {
 
     var index = parseInt(this.getAttribute("data-index"));
-     ;
+     currentIndex = index;
 
     updateSlider();
   });
@@ -109,7 +109,7 @@ function startAutoplay() {
   autoInterval = setInterval(function() {
 
     if (currentIndex < totalSlides - 1) {
-      ;
+      currentIndex++;
     } else if (infinite) {
       currentIndex = 0;
     }
